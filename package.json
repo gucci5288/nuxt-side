@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "gsap": "^3.5.1",
     "nuxt": "^2.14.0",
     "tailwindcss": "^1.8.9"
   },
