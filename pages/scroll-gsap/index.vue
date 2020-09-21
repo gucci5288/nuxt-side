@@ -6,14 +6,14 @@
         <div id="name" class="central absolute">
           <div>My name is Gucci</div>
         </div>
-        <div id="bg-1" class="bg-settings h-screen bg-cover bg-center" />
+        <div id="bg-1" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
         <div id="job-title" class="central absolute ">
           <div>A Frontend Web Developer</div>
         </div>
-        <div id="bg-2" class="bg-settings h-screen bg-cover bg-center" />
+        <div id="bg-2" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
@@ -22,7 +22,7 @@
           <div>VueJS / Vuex</div>
           <div>RxJS</div>
         </div>
-        <div id="bg-3" class="bg-settings h-screen bg-cover bg-center" />
+        <div id="bg-3" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
@@ -31,16 +31,16 @@
           <div>ReactJS / Redux</div>
           <div>GraphQL</div>
         </div>
-        <div id="bg-4" class="bg-settings h-screen bg-cover bg-center" />
+        <div id="bg-4" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
         <div id="job-title4" class="central absolute ">
           <div>Stay hungry, Stay foolish.</div>
         </div>
-        <div id="bg-5" class="bg-settings h-screen bg-cover bg-center" />
+        <div id="bg-5" class="bg-settings" />
       </div>
-<!--      <div class="page-wrap relative h-screen bg-gray-200">none</div>-->
+      <!--      <div class="page-wrap relative h-screen bg-gray-200">none</div>-->
     </div>
   </div>
 </template>
@@ -98,9 +98,9 @@ export default {
       })
     },
 
-    initParallaxBgs(){
+    initParallaxBgs() {
       const bgs = gsap.utils.toArray(".bg-settings")
-      gsap.utils.toArray(".page-wrap .bg-settings").forEach((page, i) => {
+      gsap.utils.toArray(".page-wrap").forEach((page, i) => {
         // Do the parallax effect on each section
         bgs[i].backgroundPosition = `50% ${innerHeight / 2}px`
         gsap.to(bgs[i], {
@@ -160,17 +160,18 @@ export default {
     text-align center
     width 50vw
     left: 50%;
+
   div:nth-child(1)
     transform: translate(-50%, -70%);
+
   div:nth-child(2)
     transform: translate(-50%, 0%);
+
   div:nth-child(3)
     transform: translate(-50%, 70%);
 
 .bg-settings
-  background-attachment fixed
-  background-repeat no-repeat
-  position: absolute;
+  @apply h-screen bg-cover bg-center bg-no-repeat absolute bg-fixed
   top: 0;
   left: 0;
   width: 100%;
@@ -194,9 +195,4 @@ export default {
 
 .all-wrap
   overflow-x hidden
-
-//height 100vh
-
-//.flex-sets
-//  @apply flex justify-center items-center
 </style>
