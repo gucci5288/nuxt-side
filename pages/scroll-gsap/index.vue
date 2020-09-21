@@ -1,19 +1,22 @@
 <template>
   <div class="all-wrap">
     <div class="container">
-      <div class="page-wrap relative h-screen bg-gray-100">
+
+      <div class="page-wrap">
         <div id="name" class="central absolute">
           <div>My name is Gucci</div>
         </div>
         <div id="bg-1" class="bg-settings h-screen bg-cover bg-center" />
       </div>
-      <div class="page-wrap relative h-screen bg-gray-300">
+
+      <div class="page-wrap">
         <div id="job-title" class="central absolute ">
           <div>A Frontend Web Developer</div>
         </div>
         <div id="bg-2" class="bg-settings h-screen bg-cover bg-center" />
       </div>
-      <div class="page-wrap relative h-screen bg-gray-500">
+
+      <div class="page-wrap">
         <div id="job-title2" class="central absolute ">
           <div>JavaScript</div>
           <div>VueJS / Vuex</div>
@@ -21,7 +24,8 @@
         </div>
         <div id="bg-3" class="bg-settings h-screen bg-cover bg-center" />
       </div>
-      <div class="page-wrap relative h-screen bg-gray-700">
+
+      <div class="page-wrap">
         <div id="job-title3" class="central absolute ">
           <div>Webpack</div>
           <div>ReactJS / Redux</div>
@@ -29,7 +33,8 @@
         </div>
         <div id="bg-4" class="bg-settings h-screen bg-cover bg-center" />
       </div>
-      <div class="page-wrap relative h-screen bg-gray-800">
+
+      <div class="page-wrap">
         <div id="job-title4" class="central absolute ">
           <div>Stay hungry, Stay foolish.</div>
         </div>
@@ -139,6 +144,7 @@ export default {
 
 <style lang="stylus" scoped>
 .page-wrap
+  @apply relative h-screen w-screen
   background-color black
 
 // 字
@@ -191,6 +197,6 @@ export default {
 
 //height 100vh
 
-.flex-sets
-  @apply flex justify-center items-center
+//.flex-sets
+//  @apply flex justify-center items-center
 </style>
