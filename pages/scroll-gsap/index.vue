@@ -250,7 +250,7 @@ export default {
   height: 100%;
 
 #bg-1
-  filter: blur(1px);
+  filter: blur(2px);
   background-image: url(/code-bg-1.jpg)
 
 #bg-2
