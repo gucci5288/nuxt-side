@@ -3,40 +3,36 @@
     <div class="container">
 
       <div class="page-wrap">
-        <div id="name" class="central absolute">
-          <div>My name is Gucci</div>
+        <div id="page-trigger-1" class="central absolute">
+          <div id="page-content-1">My name is Gucci</div>
         </div>
         <div id="bg-1" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
-        <div id="job-title" class="central absolute ">
-          <div>A Frontend Web Developer</div>
+        <div id="page-trigger-2" class="central absolute ">
+          <div id="page-content-2">A Frontend Web Developer</div>
         </div>
         <div id="bg-2" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
-        <div id="job-title2" class="central absolute ">
-          <div>JavaScript</div>
-          <div>VueJS / Vuex</div>
-          <div>RxJS</div>
+        <div id="page-trigger-3" class="central absolute ">
+          <div id="page-content-3">JavaScript, VueJS, Vuex, RxJs</div>
         </div>
         <div id="bg-3" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
-        <div id="job-title3" class="central absolute ">
-          <div>Webpack</div>
-          <div>ReactJS / Redux</div>
-          <div>GraphQL</div>
+        <div id="page-trigger-4" class="central absolute ">
+          <div id="page-content-4">Webpack, ReactJS, Redux, GraphQL</div>
         </div>
         <div id="bg-4" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
-        <div id="job-title4" class="central absolute ">
-          <div>Stay hungry, Stay foolish.</div>
+        <div id="page-trigger-5" class="central absolute ">
+          <div id="page-content-5">Stay hungry, Stay foolish.</div>
         </div>
         <div id="bg-5" class="bg-settings" />
       </div>
@@ -50,51 +46,126 @@ import {ScrollTrigger} from "gsap/ScrollTrigger"
 
 export default {
   name: "scroll-gsap",
+  data() {
+    return {
+      name: 'My name is Gucci',
+    }
+  },
   created() {
 
   },
   mounted() {
 
+
+    // const TL = new gsap.timeline().
+    // console.log('TL',TL)
+
+    // new TimelineMax.staggerFrom(chars, 0.8, {
+    //   opacity: 0,
+    //   scale: 0,
+    //   y: 80,
+    //   rotationX: 180,
+    //   transformOrigin: "0% 50% -50",
+    //   ease: Back.easeOut
+    // }, 0.01)
+
+
     gsap.registerPlugin(ScrollTrigger)
     this.initParallaxBgs()
-    this.initGsapFlyInScrollStart('#name')
-    this.initGsapFlyInScroll('#job-title')
-    this.initGsapFlyInScroll('#job-title2')
-    this.initGsapFlyInScroll('#job-title3')
-    this.initGsapFlyInScroll('#job-title4')
+
+
+    /**
+     * page 1 text
+     */
+    const splitText1 = new SplitText("#page-content-1", {type: "chars"}) //{type:"chars, words, lines"}
+    splitText1.chars.forEach((char, index) => {
+      this.initGsapFlyInScrollStart(char, '#page-trigger-1', index + 1)
+    })
+
+    /**
+     * page 2 text
+     */
+    const splitText2 = new SplitText("#page-content-2", {type: "words"}) //{type:"chars, words, lines"}
+    splitText2.words.forEach((word, index) => {
+      this.initGsapFlyInScroll(word, '#page-trigger-2', index + 1, 'word')
+    })
+
+    /**
+     * page 3 text
+     */
+    const splitText3 = new SplitText("#page-content-3", {type: "words"}) //{type:"chars, words, lines"}
+    splitText3.words.forEach((word, index) => {
+      this.initGsapFlyInScroll(word, '#page-trigger-3', index + 1, 'word')
+    })
+
+    /**
+     * page 4 text
+     */
+    const splitText4 = new SplitText("#page-content-4", {type: "words"}) //{type:"chars, words, lines"}
+    splitText4.words.forEach((word, index) => {
+      this.initGsapFlyInScroll(word, '#page-trigger-4', index + 1, 'word')
+    })
+
+    /**
+     * page 5 text
+     */
+    const splitText5 = new SplitText("#page-content-5", {type: "words"}) //{type:"chars, words, lines"}
+    splitText5.words.forEach((word, index) => {
+      this.initGsapFlyInScroll(word, '#page-trigger-5', index + 1, 'word', true)
+    })
+
     // this.initGsap()
   },
   methods: {
     //toggleActions
     //onEnter, onLeave, onEnterBack, and onLeaveBack,
     //"play", "pause", "resume", "reset", "restart", "complete", "reverse", and "none".
-    initGsapFlyInScrollStart(target) {
+    initGsapFlyInScrollStart(target, trigger, delay = 0) {
       gsap.to(target, {
         scrollTrigger: {
-          trigger: target,
-          start: 'top 49.9%',
-          end: 'top 49.9%',
+          trigger: trigger,
+          start: `top ${49 - delay}%`,
+          end: `top ${49 - delay}%`,
           scrub: 1,
           // markers: true,
-
           toggleActions: 'restart pause reverse pause'
         },
-        x: '25vw',
-        duration: 1
+        x: '150vw',
+        duration: 1,
       })
     },
-    initGsapFlyInScroll(target) {
+
+    initGsapFlyInScroll(target, trigger, delay = 0, type = 'char', isLast = false) {
+
+      let start = 'top 60%'
+      let end = 'top 60%'
+
+      if (type === 'char') {
+        start = `top ${60 - delay}%`
+        end = `top ${60 - delay}%`
+      }
+
+      if (type === 'word') {
+
+        let multiple = 4
+        if (isLast) multiple = 2
+
+        start = `top ${60 - delay * multiple}%`
+        end = `top ${60 - delay * multiple}%`
+      }
+
       gsap.to(target, {
         scrollTrigger: {
-          trigger: target,
-          start: 'top 60%',
-          end: 'top 60%',
+          trigger: trigger,
+          start,
+          end,
           scrub: 1,
           // markers: true,
           toggleActions: 'restart pause reverse pause'
         },
-        x: '25vw',
-        duration: 1
+        x: '150vw',
+        duration: 1,
+        delay
       })
     },
 
@@ -150,7 +221,7 @@ export default {
 // 字
 .central
   z-index 20
-  width 50vw
+  width 70vw
   transform translate(-100vw, 50vh);
 
   div
@@ -158,8 +229,9 @@ export default {
     font-size 2rem
     position: absolute;
     text-align center
-    width 50vw
-    left: 50%;
+
+  //width 50vw
+  //left: 50%;
 
   div:nth-child(1)
     transform: translate(-50%, -70%);
@@ -178,7 +250,7 @@ export default {
   height: 100%;
 
 #bg-1
-  filter: blur(2px);
+  filter: blur(1px);
   background-image: url(/code-bg-1.jpg)
 
 #bg-2
