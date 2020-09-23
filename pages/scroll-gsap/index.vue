@@ -1,39 +1,29 @@
 <template>
   <div class="all-wrap">
-    <div class="container">
+    <div class="container-control">
 
       <div class="page-wrap">
-        <div id="page-trigger-1" class="central absolute">
-          <div id="page-content-1">My name is Gucci</div>
-        </div>
+        <div id="page-content-1" class="central">My name is Gucci</div>
         <div id="bg-1" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
-        <div id="page-trigger-2" class="central absolute ">
-          <div id="page-content-2">A Frontend Web Developer</div>
-        </div>
+        <div id="page-content-2" class="central">A Frontend Web Developer</div>
         <div id="bg-2" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
-        <div id="page-trigger-3" class="central absolute ">
-          <div id="page-content-3">JavaScript, VueJS, Vuex, RxJs</div>
-        </div>
+        <div id="page-content-3" class="central">JavaScript, VueJS, Vuex, RxJs</div>
         <div id="bg-3" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
-        <div id="page-trigger-4" class="central absolute ">
-          <div id="page-content-4">Webpack, ReactJS, Redux, GraphQL</div>
-        </div>
+        <div id="page-content-4" class="central">Webpack, ReactJS, Redux, GraphQL</div>
         <div id="bg-4" class="bg-settings" />
       </div>
 
       <div class="page-wrap">
-        <div id="page-trigger-5" class="central absolute ">
-          <div id="page-content-5">Stay hungry, Stay foolish.</div>
-        </div>
+        <div id="page-content-5" class="central">Stay hungry, Stay foolish.</div>
         <div id="bg-5" class="bg-settings" />
       </div>
       <!--      <div class="page-wrap relative h-screen bg-gray-200">none</div>-->
@@ -55,65 +45,51 @@ export default {
 
   },
   mounted() {
-
-
-    // const TL = new gsap.timeline().
-    // console.log('TL',TL)
-
-    // new TimelineMax.staggerFrom(chars, 0.8, {
-    //   opacity: 0,
-    //   scale: 0,
-    //   y: 80,
-    //   rotationX: 180,
-    //   transformOrigin: "0% 50% -50",
-    //   ease: Back.easeOut
-    // }, 0.01)
-
-
+    /**
+     * to init parallax backgrounds
+     */
     gsap.registerPlugin(ScrollTrigger)
     this.initParallaxBgs()
-
-
     /**
-     * page 1 text
+     * to init page 1 content
      */
     const splitText1 = new SplitText("#page-content-1", {type: "chars"}) //{type:"chars, words, lines"}
     splitText1.chars.forEach((char, index) => {
-      this.initGsapFlyInScrollStart(char, '#page-trigger-1', index + 1)
+      this.initGsapFlyInScrollStart(char, '#page-content-1', index + 1)
     })
-
     /**
-     * page 2 text
+     * to init page 2 content
      */
     const splitText2 = new SplitText("#page-content-2", {type: "words"}) //{type:"chars, words, lines"}
     splitText2.words.forEach((word, index) => {
-      this.initGsapFlyInScroll(word, '#page-trigger-2', index + 1, 'word')
+      this.initGsapFlyInScroll(word, '#page-content-2', index + 1, 'word')
     })
-
     /**
-     * page 3 text
+     * to init page 3 content
      */
     const splitText3 = new SplitText("#page-content-3", {type: "words"}) //{type:"chars, words, lines"}
     splitText3.words.forEach((word, index) => {
-      this.initGsapFlyInScroll(word, '#page-trigger-3', index + 1, 'word')
+      this.initGsapFlyInScroll(word, '#page-content-3', index + 1, 'word')
     })
-
     /**
-     * page 4 text
+     * to init page 4 content
      */
     const splitText4 = new SplitText("#page-content-4", {type: "words"}) //{type:"chars, words, lines"}
     splitText4.words.forEach((word, index) => {
-      this.initGsapFlyInScroll(word, '#page-trigger-4', index + 1, 'word')
+      this.initGsapFlyInScroll(word, '#page-content-4', index + 1, 'word')
     })
 
     /**
-     * page 5 text
+     * to init page 5 content
      */
     const splitText5 = new SplitText("#page-content-5", {type: "words"}) //{type:"chars, words, lines"}
     splitText5.words.forEach((word, index) => {
-      this.initGsapFlyInScroll(word, '#page-trigger-5', index + 1, 'word', true)
+      this.initGsapFlyInScroll(word, '#page-content-5', index + 1, 'word', true)
     })
 
+    // /**
+    //  * init scrolling-page
+    //  */
     // this.initGsap()
   },
   methods: {
@@ -130,7 +106,7 @@ export default {
           // markers: true,
           toggleActions: 'restart pause reverse pause'
         },
-        x: '150vw',
+        x: '100vw',
         duration: 1,
       })
     },
@@ -150,8 +126,8 @@ export default {
         let multiple = 4
         if (isLast) multiple = 2
 
-        start = `top ${60 - delay * multiple}%`
-        end = `top ${60 - delay * multiple}%`
+        start = `top ${70 - delay * multiple}%`
+        end = `top ${70 - delay * multiple}%`
       }
 
       gsap.to(target, {
@@ -163,7 +139,7 @@ export default {
           // markers: true,
           toggleActions: 'restart pause reverse pause'
         },
-        x: '150vw',
+        x: '100vw',
         duration: 1,
         delay
       })
@@ -200,7 +176,7 @@ export default {
         ease: "none",
         scrollTrigger: {
           // markers: true,
-          trigger: ".container",
+          trigger: ".container-control",
           pin: true, // pin the trigger element while active
           scrub: 0.7, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
           snap: 1 / (sections.length - 1),
@@ -218,29 +194,10 @@ export default {
   @apply relative h-screen w-screen
   background-color black
 
-// 字
+// 字 TODO Font-size
 .central
-  z-index 20
-  width 70vw
-  transform translate(-100vw, 50vh);
-
-  div
-    color white
-    font-size 2rem
-    position: absolute;
-    text-align center
-
-  //width 50vw
-  //left: 50%;
-
-  div:nth-child(1)
-    transform: translate(-50%, -70%);
-
-  div:nth-child(2)
-    transform: translate(-50%, 0%);
-
-  div:nth-child(3)
-    transform: translate(-50%, 70%);
+  @apply relative text-3xl text-gray-100 z-20 text-center
+  transform translate(-100%, 50vh);
 
 .bg-settings
   @apply h-screen bg-cover bg-center bg-no-repeat absolute bg-fixed
@@ -248,9 +205,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+  filter: blur(2px);
 
 #bg-1
-  filter: blur(2px);
   background-image: url(/code-bg-1.jpg)
 
 #bg-2
